@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RaisedButton, TextField, Paper } from 'material-ui';
 import './SignInForm.scss';
-
-const styles = {
-  paper: {
-    display: 'inline-block',
-    padding: '2rem',
-  },
-  text: {
-    display: 'block',
-  },
-};
 
 class SignInForm extends Component {
   constructor(props) {
@@ -48,29 +37,21 @@ class SignInForm extends Component {
     const { email, password } = this.state;
     return (
       <div className="SignInForm">
-        <Paper zDepth={2} style={styles.paper}>
-          <TextField
-            className="SignInForm__text"
-            floatingLabelFixed
-            floatingLabelText="Email"
-            name="email"
-            onChange={this.onChangeEmail}
-            style={styles.text}
-            type="email"
-            value={email}
-          />
-          <TextField
-            className="SignInForm__text"
-            floatingLabelFixed
-            floatingLabelText="Password"
-            name="password"
-            onChange={this.onChangePassword}
-            style={styles.text}
-            type="password"
-            value={password}
-          />
-          <RaisedButton primary onClick={this.onSubmit}>Submit</RaisedButton>
-        </Paper>
+        <input
+          className="SignInForm__text"
+          name="email"
+          onChange={this.onChangeEmail}
+          type="email"
+          value={email}
+        />
+        <input
+          className="SignInForm__text"
+          name="password"
+          onChange={this.onChangePassword}
+          type="password"
+          value={password}
+        />
+        <button primary onClick={this.onSubmit}>Submit</button>
       </div>
     );
   }

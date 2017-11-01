@@ -27,48 +27,56 @@ const commonConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [{
       enforce: 'pre',
       test: /\.jsx?$/,
       use: 'eslint-loader',
-      exclude: /node_modules/
+      exclude: /node_modules/,
     }, {
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      use: 'babel-loader'
+      use: 'babel-loader',
     }, {
-      test: /\.scss$/,
+      test: /\.(scss$|css$)/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [{
           loader: 'css-loader',
           options: {
             sourceMap: true,
-            url: false
-          }
+            url: false,
+          },
         }, {
           loader: 'postcss-loader',
           options: {
-            sourceMap: true
-          }
+            sourceMap: true,
+          },
         }, {
           loader: 'sass-loader',
           options: {
             sourceMap: true,
             outputStyle: 'expanded',
             includePaths: [
-              path.resolve(__dirname, 'src/styles')
-            ]
-          }
-        }]
-      })
-    }]
+              path.resolve(__dirname, 'src/styles'),
+            ],
+          },
+        }],
+      }),
+    }, {
+      test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      // Limiting the size of the woff fonts breaks font-awesome ONLY for the extract text plugin
+      // loader: "url?limit=10000"
+      use: 'url-loader',
+    }, {
+      test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+      use: 'file-loader',
+    }],
   },
   resolve: {
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   plugins: [
     new CleanWebpackPlugin([path.join(__dirname, 'dist')]),
@@ -77,32 +85,32 @@ const commonConfig = {
       options: {
         eslint: {
           emitWarning: ENV === 'development',
-          emitError: ENV === 'staging' || ENV === 'production'
-        }
-      }
+          emitError: ENV === 'staging' || ENV === 'production',
+        },
+      },
     }),
     new StyleLintPlugin({
       configFile: path.join(__dirname, '.stylelintrc'),
       files: '**/*.?(sa|sc|c)ss',
       context: path.join(__dirname, 'src'),
-      emitErrors: ENV !== 'development'
+      emitErrors: ENV !== 'development',
     }),
     new HtmlWebpackPlugin({
       title: 'hatch-react',
       template: path.join(__dirname, 'index.html'),
       inject: 'body',
-      alwaysWriteToDisk: true
+      alwaysWriteToDisk: true,
     }),
     new HtmlWebpackHarddiskPlugin(),
     new CopyWebpackPlugin([{
       from: path.join(__dirname, 'public'),
-      to: path.join(__dirname, 'dist')
+      to: path.join(__dirname, 'dist'),
     }]),
     new ImageminPlugin({
       disable: ENV !== 'production',
-      test: /\.(jpe?g|png|gif|svg)$/i
-    })
-  ]
+      test: /\.(jpe?g|png|gif|svg)$/i,
+    }),
+  ],
 };
 
 const environmentConfig = (() => {

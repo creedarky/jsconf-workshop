@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Container from 'components/Container/Container.jsx';
-import { IconButton } from 'material-ui';
-import ExitIcon from 'material-ui/svg-icons/action/exit-to-app';
-import { white } from 'material-ui/styles/colors';
 import 'components/Header/Header.scss';
 
 
@@ -51,7 +48,7 @@ const Header = ({ isLoggedIn, onLogout }) => (
           Jogs
         </NavLink>
         }
-        {isLoggedIn && <IconButton tooltip="Log out" onClick={onLogout} tooltipPosition="top-center"><ExitIcon color={white} /></IconButton>}
+        {isLoggedIn && <button onClick={onLogout}>Logout</button>}
       </nav>
     </Container>
   </div>

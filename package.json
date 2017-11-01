@@ -47,6 +47,7 @@
     "express-sequelize-session": "^0.4.0",
     "express-session": "^1.15.6",
     "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^1.1.5",
     "font-awesome": "^4.7.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "helmet": "^3.9.0",
@@ -81,6 +82,7 @@
     "stylelint": "^7.7.0",
     "stylelint-scss": "^1.4.4",
     "stylelint-webpack-plugin": "^0.7.0",
+    "url-loader": "^0.6.2",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.3",
     "webpack-merge": "^4.1.0"
