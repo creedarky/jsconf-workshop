@@ -10,9 +10,13 @@ import SignUpView from 'views/SignUpView.jsx';
 import Header from 'components/Header/Header.jsx';
 import Main from 'components/Main/Main.jsx';
 import Footer from 'components/Footer/Footer.jsx';
-import { signOut } from 'actions/user.js';
+import { signOut, autoLogin } from 'actions/user.js';
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.autoLogin();
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.error && nextProps.error !== this.props.error) {
@@ -43,6 +47,7 @@ class App extends Component {
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   onLogout: PropTypes.func.isRequired,
+  autoLogin: PropTypes.func.isRequired,
   error: PropTypes.shape({
     message: PropTypes.string,
     date: PropTypes.instanceOf(Date),
@@ -64,7 +69,7 @@ function mapStateToProps({ user, errors }) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { onLogout: signOut },
+    { onLogout: signOut, autoLogin },
     dispatch,
   );
 }

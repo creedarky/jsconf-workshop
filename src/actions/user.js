@@ -14,6 +14,10 @@ function apiCreateAccount(data) {
   return api.post('/sign-up', data);
 }
 
+function getUserData(data) {
+  return api.get('/user', data);
+}
+
 export function signInSuccess(userData) {
   return {
     type: SIGN_IN_SUCCESS,
@@ -32,6 +36,19 @@ export function initSignIn(formData) {
     try {
       const signInResponse = await apiSignIn(formData);
       dispatch(signInSuccess(signInResponse.data));
+      dispatch(push('/jogs'));
+    } catch (e) {
+      dispatch(addError(`There was an error signing: ${e.message}`));
+    }
+  };
+}
+
+export function autoLogin() {
+  return async (dispatch) => {
+    try {
+      const response = await getUserData();
+      console.log('##', response);
+      dispatch(signInSuccess(response.data));
       dispatch(push('/jogs'));
     } catch (e) {
       dispatch(addError(`There was an error signing: ${e.message}`));

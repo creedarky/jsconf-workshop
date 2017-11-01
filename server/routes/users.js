@@ -1,12 +1,21 @@
-const R = require('ramda');
 const jwt = require('jwt-simple');
+
+const omit = (keys, obj) =>
+  Object.entries(obj)
+    .filter(([key]) => !keys.includes(key))
+    .reduce((acc, [key, value]) => Object.assign({}, acc, {
+      [key]: value,
+    }), {});
 
 module.exports = (app, db, config) => {
   const Users = db.models.Users;
 
   function getUserResponse(user) {
     const token = jwt.encode({ id: user.id }, config.jwtSecret);
-    return R.compose(R.assoc('token', token), R.omit(['password']))(user.toJSON());
+    return {
+      user: omit(['password'], user.toJSON()),
+      token,
+    };
   }
 
   app.route('/user')
@@ -25,7 +34,9 @@ module.exports = (app, db, config) => {
   app.post('/sign-up', (req, res) => {
     Users.create(req.body)
       .then((user) => {
-        res.json(getUserResponse(user));
+        const response = getUserResponse(user);
+        res.cookie('jwt-token', response.token);
+        res.json(response.user);
       })
       .catch((error) => {
         res.status(412).json({ msg: error.message });
@@ -39,7 +50,9 @@ module.exports = (app, db, config) => {
       Users.findOne({ where: { email } })
         .then((user) => {
           if (Users.isPassword(user.password, password)) {
-            res.json(getUserResponse(user));
+            const response = getUserResponse(user);
+            res.cookie('jwt-token', response.token);
+            res.json(response.user);
           } else {
             res.sendStatus(401);
           }

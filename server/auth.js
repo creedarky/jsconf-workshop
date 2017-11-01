@@ -1,11 +1,18 @@
 const passport = require('passport');
-const { Strategy, ExtractJwt } = require('passport-jwt');
+const { Strategy } = require('passport-jwt');
+
+const cookieExtractor = (req) => {
+  if (req && req.cookies) {
+    return req.cookies['jwt-token'];
+  }
+  return null;
+};
 
 module.exports = (app, db, config) => {
   const Users = db.models.Users;
   const params = {
     secretOrKey: config.jwtSecret,
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    jwtFromRequest: cookieExtractor,
   };
   const strategy = new Strategy(params, (payload, done) => {
     Users.findById(payload.id)

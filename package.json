@@ -33,6 +33,7 @@
     "bulma": "^0.6.0",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.17",
+    "cookie-parser": "^1.4.3",
     "copy-webpack-plugin": "^4.2.0",
     "cors": "^2.8.4",
     "cross-env": "^4.0.0",

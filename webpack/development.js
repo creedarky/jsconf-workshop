@@ -10,7 +10,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        API_URL: JSON.stringify('http://localhost:4000'),
+        API_URL: JSON.stringify('http://localhost:3000/api'),
       },
     }),
     new webpack.HotModuleReplacementPlugin(),
@@ -25,6 +25,12 @@ module.exports = {
     hot: true,
     inline: true,
     port: '3000',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:4000',
+        pathRewrite: { '^/api': '' },
+      },
+    },
   },
   devtool: 'eval-source-map',
 };

@@ -51,7 +51,7 @@ class SignInForm extends Component {
           type="password"
           value={password}
         />
-        <button primary onClick={this.onSubmit}>Submit</button>
+        <button onClick={this.onSubmit}>Submit</button>
       </div>
     );
   }
