@@ -1,0 +1,57 @@
+@import "config.variables.scss";
+
+$counter-dim: 4rem;
+
+.Counter {
+  text-align: center;
+}
+
+.Counter-title {
+  margin: 0 0 2rem 0;
+  padding: 0;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.Counter-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Counter-count {
+  background: $color-grey--1;
+  min-width: $counter-dim*2;
+  height: $counter-dim;
+  color: $color-grey--7;
+  line-height: $counter-dim;
+  vertical-align: middle;
+}
+
+.Counter-button {
+  margin: 0;
+  padding: 0;
+  flex: 0 0 $counter-dim;
+  max-width: $counter-dim;
+  height: $counter-dim;
+  color: $color-grey--7;
+  background-color: $color-grey--3;
+  font-family: $font-primary;
+  line-height: $counter-dim;
+
+  &:hover {
+    background-color: $color-grey--5;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+
+  &:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+}
