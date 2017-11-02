@@ -5,7 +5,7 @@ import 'components/Image/Image.scss';
 
 const Image = ({ id, votes, onVote, url }) => (
   <div className="Image-wrapper">
-    <img src={url} className="Image" />
+    <img alt="" src={url} className="Image" />
     <div className="Image-content">
       <button className="Image-button" onClick={() => onVote(id, false)}>-</button>
       <span className="Image-count">{votes}</span>

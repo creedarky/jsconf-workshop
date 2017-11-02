@@ -1,4 +1,4 @@
-import { ADD_VOTE, IMAGES_LOADED } from 'actions/images.js';
+import { ADD_VOTE, IMAGES_LOADED, ADD_IMAGE } from 'actions/images.js';
 
 const defaultState = [];
 
@@ -27,10 +27,10 @@ export default function images(state = defaultState, action) {
       return action.payload.map(mapImage);
     case ADD_VOTE:
       return updateImage(state, action.payload);
+    case ADD_IMAGE:
+      return [...state, mapImage(action.payload)];
     default:
       return state;
   }
 }
-
-
 

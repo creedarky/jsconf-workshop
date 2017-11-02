@@ -3,6 +3,7 @@ import { addError } from './errors';
 
 export const ADD_VOTE = 'IMAGE/ADD_VOTE';
 export const IMAGES_LOADED = 'IMAGE/IMAGES_LOADED';
+export const ADD_IMAGE = 'IMAGE/ADD_IMAGE';
 
 function apiVoteImage(isUp, imageId, userId) {
   const params = { image_id: imageId, user_id: userId, value: isUp ? 1 : -1 };
@@ -13,9 +14,22 @@ function apiFetchImages() {
   return api.get('/images');
 }
 
+
+function apiAddImage(url) {
+  return api.post('/images', { url });
+}
+
+
 function voteSuccess(payload) {
   return {
     type: ADD_VOTE,
+    payload,
+  };
+}
+
+function addedImage(payload) {
+  return {
+    type: ADD_IMAGE,
     payload,
   };
 }
@@ -47,6 +61,17 @@ export function loadImages() {
       dispatch(imagesLoaded(imagesResponse.data));
     } catch (e) {
       dispatch(addError(`There was an error loading images: ${e.message}`));
+    }
+  };
+}
+
+export function addImage(url) {
+  return async (dispatch) => {
+    try {
+      const imagesResponse = await apiAddImage(url);
+      dispatch(addedImage(imagesResponse.data));
+    } catch (e) {
+      dispatch(addError(`There was an error adding images: ${e.message}`));
     }
   };
 }

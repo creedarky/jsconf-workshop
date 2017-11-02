@@ -8,6 +8,7 @@ import HomeView from 'views/HomeView.jsx';
 import SignInView from 'views/SignInView.jsx';
 import SignUpView from 'views/SignUpView.jsx';
 import ImagesView from 'views/ImagesView.jsx';
+import AddImageView from 'views/AddImageView.jsx';
 import Header from 'components/Header/Header.jsx';
 import Main from 'components/Main/Main.jsx';
 import Footer from 'components/Footer/Footer.jsx';
@@ -32,12 +33,15 @@ class App extends Component {
         <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
         <Main>
           <Route exact path="/" component={HomeView} />
-          {!isLoggedIn && <Route exact path="/sign-in" component={SignInView} />}
-          {!isLoggedIn && <Route exact path="/sign-up" component={SignUpView} />}
-          {!isLoggedIn && (
-            <Route path="/:path(images)" render={() => (<Redirect to="/sign-in" />)} />
-          )}
-          {isLoggedIn && <Route exact path="/images" component={ImagesView} />}
+          {!isLoggedIn && [
+            <Route key={1} exact path="/sign-in" component={SignInView} />,
+            <Route key={2} exact path="/sign-up" component={SignUpView} />,
+            <Route key={3} path="/:path(images|add)" render={() => (<Redirect to="/sign-in" />)} />,
+          ]}
+          {isLoggedIn && [
+            <Route key={1} exact path="/images" component={ImagesView} />,
+            <Route key={2} exact path="/add" component={AddImageView} />,
+          ]}
         </Main>
         <Footer />
         <NotificationContainer />

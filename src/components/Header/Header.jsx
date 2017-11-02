@@ -19,36 +19,50 @@ const Header = ({ isLoggedIn, onLogout }) => (
           Home
         </NavLink>
         {!isLoggedIn &&
-        <NavLink
-          exact
-          to="/sign-in"
-          className="Header-navigation-item"
-          activeClassName="Header-navigation-item--isActive"
-        >
-          Sign in
-        </NavLink>
-        }
-        {!isLoggedIn &&
-        <NavLink
-          exact
-          to="/sign-up"
-          className="Header-navigation-item"
-          activeClassName="Header-navigation-item--isActive"
-        >
-          Sign up
-        </NavLink>
+          [
+            <NavLink
+              key={1}
+              exact
+              to="/sign-in"
+              className="Header-navigation-item"
+              activeClassName="Header-navigation-item--isActive"
+            >
+              Sign in
+            </NavLink>,
+            <NavLink
+              key={2}
+              exact
+              to="/sign-up"
+              className="Header-navigation-item"
+              activeClassName="Header-navigation-item--isActive"
+            >
+              Sign up
+            </NavLink>,
+          ]
         }
         {isLoggedIn &&
-        <NavLink
-          exact
-          to="/images"
-          className="Header-navigation-item"
-          activeClassName="Header-navigation-item--isActive"
-        >
-          Images
-        </NavLink>
+          [
+            <NavLink
+              key={1}
+              exact
+              to="/images"
+              className="Header-navigation-item"
+              activeClassName="Header-navigation-item--isActive"
+            >
+              Images
+            </NavLink>,
+            <NavLink
+              key={2}
+              exact
+              to="/add"
+              className="Header-navigation-item"
+              activeClassName="Header-navigation-item--isActive"
+            >
+              Add
+            </NavLink>,
+            <button key={3} onClick={onLogout}>Logout</button>,
+          ]
         }
-        {isLoggedIn && <button onClick={onLogout}>Logout</button>}
       </nav>
     </Container>
   </div>

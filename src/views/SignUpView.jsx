@@ -1,3 +1,3 @@
-import SignUpContainer from 'containers/SignUpContainer/SignUpContainer.jsx';
+import SignUpContainer from 'containers/SignUpContainer.jsx';
 
 export default SignUpContainer;
