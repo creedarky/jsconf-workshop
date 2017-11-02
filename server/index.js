@@ -1,4 +1,11 @@
 const express = require('express');
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const clientConfig = require('../webpack.config.js');
+const serverConfig = require('../webpack.server.config.js');
 const initConfig = require('./libs/config.js');
 const startDB = require('./db.js');
 const seed = require('./seed.js');
@@ -20,18 +27,26 @@ initRoutes(app, db, config);
 if (process.env.NODE_ENV === 'development') {
   seed(app, db);
 }
+// Instance webpack and give the compilers (Configs)
+const compiler = webpack([clientConfig, serverConfig]);
+
+compiler.apply(new FriendlyErrorsWebpackPlugin()); // Just to show better messages and erros
+
+app.use(webpackDevMiddleware(compiler, {
+  serverSideRender: true,
+}));
+
+app.use(
+  webpackHotMiddleware(
+    compiler.compilers.find(c => c.name === 'client'),
+    {
+      log: () => {},
+    },
+  ),
+);
+
+app.use(webpackHotServerMiddleware(compiler));
 
 boot(app, db);
-
-
-// consign({ verbose: true, cwd: 'server' })
-//   .include('libs/config.js')
-//   .then('db.js')
-//   .then('auth.js')
-//   .then('libs/middlewares.js')
-//   .then('routes')
-//   .then('seed.js')
-//   .then('libs/boot.js')
-//   .into(app);
 
 module.exports = app;
