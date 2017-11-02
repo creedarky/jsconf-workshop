@@ -16,8 +16,14 @@ const ENV = process.env.NODE_ENV;
 const commonConfig = {
   name: 'client',
   target: 'web',
+  devtool: 'eval-source-map',
   entry: {
-    index: path.join(__dirname, 'src/index.jsx'),
+    index: [
+      'babel-polyfill',
+      'webpack-hot-middleware/client',
+      'react-hot-loader/patch',
+      path.join(__dirname, 'src/index.jsx'),
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

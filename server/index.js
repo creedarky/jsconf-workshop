@@ -4,7 +4,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const clientConfig = require('../webpack.config.js');
+const clientConfig = require('../webpack.client.config.js');
 const serverConfig = require('../webpack.server.config.js');
 const initConfig = require('./libs/config.js');
 const startDB = require('./db.js');
@@ -29,6 +29,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 // Instance webpack and give the compilers (Configs)
 const compiler = webpack([clientConfig, serverConfig]);
+
+console.log('###', clientConfig);
 
 compiler.apply(new FriendlyErrorsWebpackPlugin()); // Just to show better messages and erros
 

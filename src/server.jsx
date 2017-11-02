@@ -17,13 +17,13 @@ export default function (props) {
   return `
     <html>
       <head>
-        <link href="/styles.scss" />      
+        <link href="/index.css" type="text/css" rel="stylesheet"  />      
       </head>
       <body>
           <div id="app">
             ${markup}          
           </div>
-        <script src="/index.js" />
+        <script type="text/javascript" src="/index.js"></script>
       </body>
     </html>
   `;

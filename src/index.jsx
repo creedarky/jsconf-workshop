@@ -13,6 +13,8 @@ const history = createHistory();
 const store = configureStore(history);
 const rootElement = document.getElementById('app');
 
+console.log('### is this running');
+
 function renderApp(AppComponent) {
   ReactDOM.hydrate(
     <AppContainer>
