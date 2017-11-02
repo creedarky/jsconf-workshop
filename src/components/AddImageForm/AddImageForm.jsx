@@ -23,6 +23,7 @@ class AddImageForm extends Component {
     const { url } = this.state;
     const { onSubmit } = this.props;
     if (!url || !url.trim().length === 0) {
+      // eslint-disable-next-line no-alert
       alert('You must provide an url');
       return;
     }
