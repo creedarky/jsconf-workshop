@@ -40,7 +40,7 @@ const commonConfig = {
       exclude: /node_modules/,
       use: 'babel-loader',
     }, {
-      test: /\.scss$/,
+      test: /\.?(sa|sc|c)ss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [{

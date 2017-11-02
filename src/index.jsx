@@ -6,14 +6,15 @@ import { AppContainer } from 'react-hot-loader';
 import configureStore from 'configureStore.js';
 import createHistory from 'history/createBrowserHistory';
 import AppView from 'views/AppView.jsx';
+import 'bulma/css/bulma.css';
 import 'styles.scss';
+
 
 const history = createHistory();
 
 const store = configureStore(history);
 const rootElement = document.getElementById('app');
 
-console.log('### is this running');
 
 function renderApp(AppComponent) {
   ReactDOM.hydrate(
