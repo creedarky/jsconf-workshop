@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 module.exports = (app) => {
-  app.set('port', 4000);
+  app.set('port', process.env.PORT || 3000);
   app.set('json spaces', 2);
   app.use(helmet());
   app.use(cors({
