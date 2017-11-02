@@ -7,6 +7,7 @@
     "start": "node app.js",
     "serve": "cross-env NODE_ENV=development webpack-dev-server",
     "nodemon": "cross-env NODE_ENV=development nodemon server/index.js",
+    "serve:dev": "cross-env NODE_ENV=development node server/index.js",
     "build:development": "cross-env NODE_ENV=development webpack",
     "build:staging": "cross-env NODE_ENV=staging webpack",
     "build:production": "cross-env NODE_ENV=production webpack"
@@ -83,7 +84,9 @@
     "stylelint-webpack-plugin": "^0.7.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.6.0",
+    "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.9.3",
+    "webpack-hot-server-middleware": "^0.2.0",
     "webpack-merge": "^4.1.0"
   }
 }
