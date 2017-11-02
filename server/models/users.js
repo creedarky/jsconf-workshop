@@ -39,7 +39,7 @@ module.exports = (sequelize, DataType) => {
     },
     classMethods: {
       associate: (models) => {
-        Users.hasMany(models.Votes, { as: 'user' });
+        Users.hasMany(models.Votes, { as: 'votes' });
       },
       isPassword: (encodedPassword, password) => bcrypt.compareSync(password, encodedPassword),
       generatePassword: (password) => {

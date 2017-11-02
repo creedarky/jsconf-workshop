@@ -15,17 +15,9 @@ module.exports = (sequelize, DataType) => {
   }, {
     classMethods: {
       associate: (models) => {
-        Images.hasMany(models.Votes, { as: 'image' });
+        Images.hasMany(models.Votes, { as: 'votes' });
       },
     },
-    // hooks: {
-    //   beforeCreate(jog) {
-    //     jog.speed = calculateSpeed(jog);
-    //   },
-    //   beforeUpdate(jog) {
-    //     jog.speed = calculateSpeed(jog);
-    //   },
-    // },
   });
   return Images;
 };

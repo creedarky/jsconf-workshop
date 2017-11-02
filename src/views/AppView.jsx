@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import HomeView from 'views/HomeView.jsx';
 import SignInView from 'views/SignInView.jsx';
 import SignUpView from 'views/SignUpView.jsx';
+import ImagesView from 'views/ImagesView.jsx';
 import Header from 'components/Header/Header.jsx';
 import Main from 'components/Main/Main.jsx';
 import Footer from 'components/Footer/Footer.jsx';
@@ -34,8 +35,9 @@ class App extends Component {
           {!isLoggedIn && <Route exact path="/sign-in" component={SignInView} />}
           {!isLoggedIn && <Route exact path="/sign-up" component={SignUpView} />}
           {!isLoggedIn && (
-            <Route path="/:path(report|users|jogs|jog-admin)" render={() => (<Redirect to="/sign-in" />)} />
+            <Route path="/:path(images)" render={() => (<Redirect to="/sign-in" />)} />
           )}
+          {isLoggedIn && <Route exact path="/images" component={ImagesView} />}
         </Main>
         <Footer />
         <NotificationContainer />
@@ -62,7 +64,7 @@ App.defaultProps = {
 
 function mapStateToProps({ user, errors }) {
   return {
-    isLoggedIn: !!user.data,
+    isLoggedIn: !!user,
     error: errors.error,
   };
 }

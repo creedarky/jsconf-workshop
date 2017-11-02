@@ -25,7 +25,7 @@ export function signInSuccess(userData) {
   };
 }
 
-export function signOut() {
+export function completedSignOut() {
   return {
     type: SIGN_OUT,
   };
@@ -36,7 +36,7 @@ export function initSignIn(formData) {
     try {
       const signInResponse = await apiSignIn(formData);
       dispatch(signInSuccess(signInResponse.data));
-      dispatch(push('/jogs'));
+      dispatch(push('/'));
     } catch (e) {
       dispatch(addError(`There was an error signing: ${e.message}`));
     }
@@ -47,11 +47,10 @@ export function autoLogin() {
   return async (dispatch) => {
     try {
       const response = await getUserData();
-      console.log('##', response);
       dispatch(signInSuccess(response.data));
-      dispatch(push('/jogs'));
+      dispatch(push('/'));
     } catch (e) {
-      dispatch(addError(`There was an error signing: ${e.message}`));
+      dispatch(push('/sign-in'));
     }
   };
 }
@@ -61,9 +60,20 @@ export function initCreateAccount(formData) {
     try {
       const createAccountResponse = await apiCreateAccount(formData);
       dispatch(signInSuccess(createAccountResponse.data));
-      dispatch(push('/jogs'));
+      dispatch(push('/'));
     } catch (e) {
       dispatch(addError(`There was an error creating account: ${e.message}`));
     }
+  };
+}
+
+function deleteCookie(name = 'jwt-token') {
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+}
+
+export function signOut() {
+  return (dispatch) => {
+    deleteCookie();
+    dispatch(completedSignOut());
   };
 }

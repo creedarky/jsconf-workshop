@@ -12,8 +12,8 @@ module.exports = (sequelize, DataType) => {
   }, {
     classMethods: {
       associate: (models) => {
-        Votes.belongsTo(models.Users, { as: 'user' });
-        Votes.belongsTo(models.Images, { as: 'image' });
+        Votes.belongsTo(models.Users);
+        Votes.belongsTo(models.Images);
       },
     },
   });

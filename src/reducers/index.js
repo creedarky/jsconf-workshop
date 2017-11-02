@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import count from './count.js';
+import images from './images.js';
 import user from './user.js';
 import errors from './errors.js';
 
 
 const rootReducer = combineReducers({
   user,
-  count,
+  images,
   errors,
   router: routerReducer,
 });

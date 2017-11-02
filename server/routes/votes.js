@@ -1,32 +1,32 @@
 
 module.exports = (app, db) => {
-  const { Images } = db.models;
+  const { Votes } = db.models;
 
-  app.route('/images')
+  app.route('/votes')
     .all(app.auth.authenticate())
     .get((req, res) => {
-      Images.findAll({ include: [{ all: true }] })
+      Votes.findAll({ include: [{ all: true, nested: true }] })
       .then(result => res.json(result))
       .catch((error) => {
         res.status(412).json({ msg: error.message });
       });
     })
     .post((req, res) => {
-      Images.create(req.body)
+      Votes.create(req.body)
         .then(result => res.json(result))
         .catch((error) => {
           res.status(412).json({ msg: error.message });
         });
     });
 
-  app.route('/images/:id')
+  app.route('/votes/:id')
     .all(app.auth.authenticate())
     .get((req, res) => {
-      Images.findOne({
+      Votes.findOne({
         where: {
           id: req.params.id,
         },
-        include: [{ all: true }],
+        include: [{ all: true, nested: true }],
       })
       .then((result) => {
         if (result) {
@@ -41,7 +41,7 @@ module.exports = (app, db) => {
     })
     .put(async (req, res) => {
       try {
-        const vote = await Images.findOne({ where: {
+        const vote = await Votes.findOne({ where: {
           id: req.params.id,
         } });
         const result = await vote.update(req.body);
@@ -51,7 +51,7 @@ module.exports = (app, db) => {
       }
     })
     .delete((req, res) => {
-      Images.destroy({ where: {
+      Votes.destroy({ where: {
         id: req.params.id,
       } })
       .then(() => res.sendStatus(204))

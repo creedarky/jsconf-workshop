@@ -45,7 +45,7 @@ const Header = ({ isLoggedIn, onLogout }) => (
           className="Header-navigation-item"
           activeClassName="Header-navigation-item--isActive"
         >
-          Jogs
+          Images
         </NavLink>
         }
         {isLoggedIn && <button onClick={onLogout}>Logout</button>}

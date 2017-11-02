@@ -18,6 +18,8 @@ module.exports = async (app, db) => {
   //   return Users.create(data);
   // }).then(u => u.toJSON());
   //
+  //
+  //
   // const images = await Images.sync()
   // .then(() => Images.destroy({ where: {} }))
   // .then(() => {
