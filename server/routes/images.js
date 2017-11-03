@@ -3,7 +3,6 @@ module.exports = (app, db) => {
   const { Images } = db.models;
 
   app.route('/images')
-    .all(app.auth.authenticate())
     .get((req, res) => {
       Images.findAll({ include: [{ all: true }] })
       .then(result => res.json(result))
@@ -11,7 +10,7 @@ module.exports = (app, db) => {
         res.status(412).json({ msg: error.message });
       });
     })
-    .post((req, res) => {
+    .post(app.auth.authenticate(), (req, res) => {
       Images.create(req.body)
         .then(result => res.json(result))
         .catch((error) => {
@@ -20,7 +19,6 @@ module.exports = (app, db) => {
     });
 
   app.route('/images/:id')
-    .all(app.auth.authenticate())
     .get((req, res) => {
       Images.findOne({
         where: {
@@ -39,7 +37,7 @@ module.exports = (app, db) => {
         res.status(412).json({ msg: error.message });
       });
     })
-    .put(async (req, res) => {
+    .put(app.auth.authenticate(), async (req, res) => {
       try {
         const vote = await Images.findOne({ where: {
           id: req.params.id,
@@ -50,7 +48,7 @@ module.exports = (app, db) => {
         res.status(412).json({ msg: e.message });
       }
     })
-    .delete((req, res) => {
+    .delete(app.auth.authenticate(), (req, res) => {
       Images.destroy({ where: {
         id: req.params.id,
       } })
