@@ -60,6 +60,7 @@ typings/
 # Build / dist directories
 build
 dist
+public
 
 
 # sqlite
