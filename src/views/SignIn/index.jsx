@@ -1,10 +1,11 @@
 import React from 'react';
 import Loadable from 'react-loadable';
+import Loading from 'components/Loading/Loading.jsx';
 
 const LoadingComponent = Loadable({
   loader: () => import('./SignInView.jsx'),
-  loading() {
-    return <div>Loading...</div>;
+  loading(props) {
+    return <Loading {...props} />;
   },
 });
 
