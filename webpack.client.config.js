@@ -4,6 +4,7 @@ const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const configs = {
   development: require('./webpack/development.js'),
@@ -12,18 +13,18 @@ const configs = {
 };
 
 const ENV = process.env.NODE_ENV || 'development';
-
+const devEntries = ENV === 'development' ? ['webpack-hot-middleware/client', 'react-hot-loader/patch'] : [];
+const entry = [
+  'babel-polyfill',
+  ...devEntries,
+  path.join(__dirname, 'src/index.jsx'),
+]
 const commonConfig = {
   name: 'client',
   target: 'web',
   devtool: 'eval-source-map',
   entry: {
-    index: [
-      'babel-polyfill',
-      'webpack-hot-middleware/client',
-      'react-hot-loader/patch',
-      path.join(__dirname, 'src/index.jsx'),
-    ],
+    index: entry,
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -71,6 +72,7 @@ const commonConfig = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   plugins: [
+    new CleanWebpackPlugin([path.join(__dirname, 'dist')]),
     new webpack.LoaderOptionsPlugin({
       test: /\.jsx?$/,
       options: {
