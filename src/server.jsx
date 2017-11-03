@@ -22,7 +22,24 @@ const authApi = req => (
     .catch(() => null)
 );
 
-export default async function ({ req, res, context }) {
+
+function getCssByChunkName(name, { assetsByChunkName }) {
+  let assets = assetsByChunkName[name];
+  if (!Array.isArray(assets)) {
+    assets = [assets];
+  }
+  return assets.find(asset => /\.css$/.test(asset));
+}
+
+function getJsByChunkName(name, { assetsByChunkName }) {
+  let assets = assetsByChunkName[name];
+  if (!Array.isArray(assets)) {
+    assets = [assets];
+  }
+  return assets.find(asset => /\.js$/.test(asset));
+}
+
+export default async function ({ req, res, context, clientStats }) {
   const history = createMemoryHistory({
     initialEntries: [req.url],
   });
@@ -59,8 +76,11 @@ export default async function ({ req, res, context }) {
     </Provider>,
   );
 
+  const css = getCssByChunkName('index', clientStats);
+  const scripts = getJsByChunkName('index', clientStats);
+
   return ReactDOMServer.renderToStaticMarkup(
-    <Html css="index.css" scripts={['index.js']} initialState={store.getState()} markup={markup} />,
+    <Html css={css} scripts={[scripts]} initialState={store.getState()} markup={markup} />,
   );
 }
 
