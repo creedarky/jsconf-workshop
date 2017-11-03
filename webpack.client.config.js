@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
 const configs = {
   development: require('./webpack/development.js'),
@@ -71,7 +71,6 @@ const commonConfig = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   plugins: [
-    new CleanWebpackPlugin([path.join(__dirname, 'dist')]),
     new webpack.LoaderOptionsPlugin({
       test: /\.jsx?$/,
       options: {
@@ -86,6 +85,29 @@ const commonConfig = {
       files: '**/*.?(sa|sc|c)ss',
       context: path.join(__dirname, 'src'),
       emitErrors: ENV !== 'development',
+    }),
+    new ReactLoadablePlugin({
+      filename: './dist/react-loadable.json',
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'bootstrap',
+      // minChunks: number|Infinity|function(module, count) -> boolean,
+      // chunks: string[], // Decide in which chunk or entry it should try to search.
+      minChunks(module) {
+        // This prevents stylesheet resources with the .css or .scss extension
+        // from being moved from their original chunk to the vendor chunk
+        if (module.resource && (/^.*\.(css|scss)$/).test(module.resource)) {
+          return false;
+        }
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
+      // minChunks(module, count) {
+      //   if (module.resource && (/^.*\.(css|scss)$/).test(module.resource)) {
+      //     return false;
+      //   }
+      //   return module.context && module.context.indexOf('node_modules') !== -1 && count > 2;
+      // },
     }),
   ],
 };

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
+import Loadable from 'react-loadable';
 import configureStore from 'configureStore.js';
 import createHistory from 'history/createBrowserHistory';
 import AppView from 'views/AppView.jsx';
@@ -27,7 +28,7 @@ function renderApp(AppComponent) {
     </AppContainer>, rootElement);
 }
 
-renderApp(AppView);
+Loadable.preloadReady().then(() => renderApp(AppView));
 
 if (module.hot) {
   module.hot.accept('views/AppView.jsx', () => {

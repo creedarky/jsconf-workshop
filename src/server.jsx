@@ -3,12 +3,16 @@ import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router, matchPath } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import Loadable from 'react-loadable';
+import { getBundles } from 'react-loadable/webpack';
 import axios from 'axios';
+
 
 import configureStore from 'configureStore.js';
 import AppView from 'views/AppView.jsx';
 import Html from 'components/Html/Html.jsx';
 import routes from 'routes.js';
+import loadableStats from '../dist/react-loadable.json';
 
 
 const API_URL = process.env.API_URL;
@@ -68,19 +72,27 @@ export default async function ({ req, res, context, clientStats }) {
   }, []);
 
   await Promise.all(promises);
-
+  const modules = [];
   // We need to wait for the promise to complete to dispatch the actions
   const markup = ReactDOMServer.renderToString(
-    <Provider store={store}>
-      <Router location={req.url} context={{}} ><AppView /></Router>
-    </Provider>,
+    <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+      <Provider store={store}>
+        <Router location={req.url} context={{}} ><AppView /></Router>
+      </Provider>
+    </Loadable.Capture>,
   );
 
+  const bundles = getBundles(loadableStats, modules);
+
   const css = getCssByChunkName('index', clientStats);
-  const scripts = getJsByChunkName('index', clientStats);
+  const scripts = [
+    getJsByChunkName('bootstrap', clientStats),
+    ...bundles.map(b => b.file),
+    getJsByChunkName('index', clientStats),
+  ];
 
   return ReactDOMServer.renderToStaticMarkup(
-    <Html css={css} scripts={[scripts]} initialState={store.getState()} markup={markup} />,
+    <Html css={css} scripts={scripts} initialState={store.getState()} markup={markup} />,
   );
 }
 
