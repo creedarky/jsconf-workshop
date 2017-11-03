@@ -1,8 +1,8 @@
-import Home from 'views/HomeView.jsx';
-import SignIn from 'views/SignInView.jsx';
-import SignUp from 'views/SignUpView.jsx';
-import Images from 'views/ImagesView.jsx';
-import AddImage from 'views/AddImageView.jsx';
+import Home from 'views/Home/index.jsx';
+import SignIn from 'views/SignIn/index.jsx';
+import SignUp from 'views/SignUp/index.jsx';
+import Images from 'views/Images/index.jsx';
+import AddImage from 'views/Add/index.jsx';
 
 const routes = [
   {
