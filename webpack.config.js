@@ -110,6 +110,28 @@ const commonConfig = {
       disable: ENV !== 'production',
       test: /\.(jpe?g|png|gif|svg)$/i,
     }),
+
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'bootstrap',
+      // minChunks: number|Infinity|function(module, count) -> boolean,
+      // chunks: string[], // Decide in which chunk or entry it should try to search.
+      minChunks(module) {
+        // This prevents stylesheet resources with the .css or .scss extension
+        // from being moved from their original chunk to the vendor chunk
+        if (module.resource && (/^.*\.(css|scss)$/).test(module.resource)) {
+          return false;
+        }
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
+      // minChunks(module, count) {
+      //   if (module.resource && (/^.*\.(css|scss)$/).test(module.resource)) {
+      //     return false;
+      //   }
+      //   return module.context && module.context.indexOf('node_modules') !== -1 && count > 2;
+      // },
+    }),
   ],
 };
 
