@@ -50,6 +50,15 @@ const sConfig = {
         SERVER_SIDE: JSON.stringify(true),
       },
     }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.jsx?$/,
+      options: {
+        eslint: {
+          emitWarning: ENV === 'development',
+          emitError: ENV === 'staging' || ENV === 'production',
+        },
+      },
+    }),
   ],
 };
 

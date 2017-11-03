@@ -4,20 +4,18 @@ import { withRouter, Route, Redirect } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import HomeView from 'views/HomeView.jsx';
-import SignInView from 'views/SignInView.jsx';
-import SignUpView from 'views/SignUpView.jsx';
-import ImagesView from 'views/ImagesView.jsx';
-import AddImageView from 'views/AddImageView.jsx';
 import Header from 'components/Header/Header.jsx';
 import Main from 'components/Main/Main.jsx';
 import Footer from 'components/Footer/Footer.jsx';
 import { signOut, autoLogin } from 'actions/user.js';
+import routes from 'routes.js';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.autoLogin();
+    if (!this.props.isLoggedIn) {
+      this.props.autoLogin();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,16 +30,11 @@ class App extends Component {
       <div className="App">
         <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
         <Main>
-          <Route exact path="/" component={HomeView} />
-          {!isLoggedIn && [
-            <Route key={1} exact path="/sign-in" component={SignInView} />,
-            <Route key={2} exact path="/sign-up" component={SignUpView} />,
-            <Route key={3} path="/:path(images|add)" render={() => (<Redirect to="/sign-in" />)} />,
-          ]}
-          {isLoggedIn && [
-            <Route key={1} exact path="/images" component={ImagesView} />,
-            <Route key={2} exact path="/add" component={AddImageView} />,
-          ]}
+          { !isLoggedIn && <Route path="/:path(images|add)" render={() => (<Redirect to="/sign-in" />)} />}
+          { isLoggedIn && <Route path="/:path(sign-in|sign-up)" render={() => (<Redirect to="/" />)} />}
+          { routes.map(r => (
+            <Route key={r.path} {...r} />
+          ))}
         </Main>
         <Footer />
         <NotificationContainer />

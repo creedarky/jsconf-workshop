@@ -11,7 +11,7 @@ const configs = {
   production: require('./webpack/production.js'),
 };
 
-const ENV = process.env.NODE_ENV;
+const ENV = process.env.NODE_ENV || 'development';
 
 const commonConfig = {
   name: 'client',
