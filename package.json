@@ -10,7 +10,7 @@
     "serve:dev": "cross-env NODE_ENV=development node server/index.js",
     "build:development": "cross-env NODE_ENV=development webpack",
     "build:staging": "cross-env NODE_ENV=staging webpack",
-    "build:production": "cross-env NODE_ENV=production webpack"
+    "build:production": "cross-env NODE_ENV=production webpack --config ./webpack.client.config.js && webpack --config ./webpack.server.config.js"
   },
   "engines": {
     "node": "^8",

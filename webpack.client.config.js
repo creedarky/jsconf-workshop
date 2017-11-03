@@ -4,6 +4,7 @@ const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const configs = {
   development: require('./webpack/development.js'),
@@ -71,6 +72,7 @@ const commonConfig = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   plugins: [
+    new CleanWebpackPlugin([path.join(__dirname, 'dist')]),
     new webpack.LoaderOptionsPlugin({
       test: /\.jsx?$/,
       options: {

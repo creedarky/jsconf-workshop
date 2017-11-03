@@ -9,7 +9,7 @@ module.exports = {
     filename: '[name].[chunkhash].js',
   },
   plugins: [
-    new StatsWebpackPlugin(`${name}-stats.json`, {
+    new StatsWebpackPlugin('client-stats.json', {
       chunkModules: true,
     }),
     new webpack.DefinePlugin({
