@@ -16,6 +16,3 @@ React Starter App for JSConf Colombia Workshop
 - Run `yarn nodemon` to run api server
 - Run `yarn storybook` to start storybook
 
-## Contributing
-
-Check out the [contributing guidelines.](.github/CONTRIBUTING.md)
