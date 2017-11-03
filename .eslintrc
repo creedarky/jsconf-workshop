@@ -1,0 +1,27 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "forOf": true,
+      "jsx": true,
+      "es6": true
+    }
+  },
+  "globals": {
+    "window": true,
+  },
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "react/prefer-stateless-function": 0
+  }
+}

@@ -1,0 +1,26 @@
+input,
+textarea,
+button,
+select {
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: normal;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  appearance: none;
+}
+
+input[type="radio"] {
+  appearance: radio;
+}
+
+input[type="checkbox"] {
+  appearance: checkbox;
+}
+
+button {
+  cursor: pointer;
+}

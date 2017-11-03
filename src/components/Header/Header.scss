@@ -1,0 +1,44 @@
+@import "config.variables";
+@import "config.functions";
+
+.Header {
+  padding: gutter(lg) 0;
+  background-color: $color-grey--9;
+  text-align: center;
+}
+
+.Header-logo {
+  display: block;
+  margin: 0 auto gutter(xs) auto;
+}
+
+.Header-title {
+  margin: 0 0 gutter(xs) 0;
+  padding: 0;
+  color: #fff;
+}
+
+.Header-subTitle {
+  margin: 0;
+  padding: 0;
+  color: $color-grey--5;
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+.Header-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: gutter(md);
+}
+
+.Header-navigation-item {
+  margin: 0 gutter(sm);
+  color: $color-grey--1;
+  text-decoration: none;
+}
+
+.Header-navigation-item--isActive {
+  text-decoration: underline;
+}

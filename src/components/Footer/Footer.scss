@@ -1,0 +1,8 @@
+@import "config.variables";
+@import "config.functions";
+
+.Footer {
+  padding: gutter(xl) 0;
+  text-align: center;
+  border-top: solid 0.1rem $color-grey--1;
+}
