@@ -45,6 +45,9 @@ const sConfig = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(ENV),
