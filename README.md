@@ -2,8 +2,7 @@
 
 [![Ship faster with ZenHub](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://zenhub.com)
 
-
-A react starter kit.
+React Starter App for JSConf Colombia Workshop
 
 ## Requirements:
 
@@ -17,6 +16,3 @@ A react starter kit.
 - Run `yarn nodemon` to run api server
 - Run `yarn storybook` to start storybook
 
-## Contributing
-
-Check out the [contributing guidelines.](.github/CONTRIBUTING.md)
