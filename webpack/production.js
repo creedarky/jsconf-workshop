@@ -8,6 +8,7 @@ module.exports = {
   output: {
     filename: '[name].[chunkhash].js',
   },
+  devtool: 'source-map',
   plugins: [
     new StatsWebpackPlugin('client-stats.json', {
       chunkModules: true,

@@ -8,6 +8,7 @@
     "serve": "cross-env NODE_ENV=development webpack-dev-server",
     "nodemon": "cross-env NODE_ENV=development nodemon server/index.js",
     "serve:dev": "cross-env NODE_ENV=development node server/index.js",
+    "serve:prod": "cross-env NODE_ENV=production node server/index.js",
     "build:development": "cross-env NODE_ENV=development webpack",
     "build:staging": "cross-env NODE_ENV=staging webpack",
     "build:production": "cross-env NODE_ENV=production webpack --config ./webpack.client.config.js && webpack --config ./webpack.server.config.js"
