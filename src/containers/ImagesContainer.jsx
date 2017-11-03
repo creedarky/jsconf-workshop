@@ -8,7 +8,10 @@ import Image from 'components/Image/Image.jsx';
 
 class ImagesContainer extends Component {
   componentDidMount() {
-    this.props.loadImages();
+    const { images } = this.props;
+    if (!images || !images.length) {
+      this.props.loadImages();
+    }
   }
 
   render() {
