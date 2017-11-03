@@ -14,7 +14,7 @@ module.exports = (app) => {
     allowedHeaders: ['Content-Type', 'Authorization'],
   }));
   app.use(bodyParser.json());
-  app.use(cookieParser())
+  app.use(cookieParser());
   app.use(app.auth.initialize());
   app.use(express.static('public'));
 };

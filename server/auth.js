@@ -15,7 +15,7 @@ module.exports = (app, db, config) => {
     jwtFromRequest: cookieExtractor,
   };
   const strategy = new Strategy(params, (payload, done) => {
-    Users.findById(payload.id)
+    return Users.findById(payload.id)
       .then((user) => {
         if (user) {
           return done(null, {

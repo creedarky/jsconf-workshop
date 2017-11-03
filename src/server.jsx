@@ -19,7 +19,7 @@ const authApi = req => (
     .catch(() => null)
 );
 
-export default async function ({ req, context }) {
+export default async function ({ req, res, context }) {
   const history = createMemoryHistory({
     initialEntries: [req.url],
   });
@@ -32,6 +32,10 @@ export default async function ({ req, context }) {
       <Router location={req.url} context={context} ><AppView /></Router>
     </Provider>,
   );
+
+  if (context.url) {
+    return res.redirect(context.url);
+  }
 
   // console.log('###', context);
   return ReactDOMServer.renderToStaticMarkup(
