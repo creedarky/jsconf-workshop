@@ -6,7 +6,6 @@ import { AppContainer } from 'react-hot-loader';
 import configureStore from 'configureStore.js';
 import createHistory from 'history/createBrowserHistory';
 import AppView from 'views/AppView.jsx';
-import 'bulma/css/bulma.css';
 import 'styles.scss';
 
 
