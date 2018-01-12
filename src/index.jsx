@@ -6,17 +6,17 @@ import { AppContainer } from 'react-hot-loader';
 import configureStore from 'configureStore.js';
 import createHistory from 'history/createBrowserHistory';
 import AppView from 'views/AppView.jsx';
-import 'font-awesome/scss/font-awesome.scss';
-import 'bulma/css/bulma.css';
 import 'styles.scss';
+
 
 const history = createHistory();
 
 const store = configureStore(history);
 const rootElement = document.getElementById('app');
 
+
 function renderApp(AppComponent) {
-  ReactDOM.render(
+  ReactDOM.hydrate(
     <AppContainer>
       <Provider store={store}>
         <Router><AppComponent /></Router>
