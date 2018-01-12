@@ -26,7 +26,7 @@ const sConfig = {
     }, {
       test: /\.scss$/,
       use: [{
-        loader: 'css-loader/locals',
+        loader: 'css-loader',
       }, {
         loader: 'postcss-loader',
       }, {
