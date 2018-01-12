@@ -30,8 +30,6 @@ if (process.env.NODE_ENV === 'development') {
 // Instance webpack and give the compilers (Configs)
 const compiler = webpack([clientConfig, serverConfig]);
 
-console.log('###', clientConfig);
-
 compiler.apply(new FriendlyErrorsWebpackPlugin()); // Just to show better messages and erros
 
 app.use(webpackDevMiddleware(compiler, {
