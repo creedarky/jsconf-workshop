@@ -6,8 +6,7 @@ import { routerMiddleware } from 'react-router-redux';
 
 function configureStore(history, initialState = {}) {
   const middlewares = [thunk, routerMiddleware(history)];
-
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production' && !process.env.SERVER_SIDE) {
     middlewares.push(createLogger());
   }
 

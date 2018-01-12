@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const ENV = process.env.NODE_ENV || 'development';
+const port = process.env.PORT || 3000;
 
 const sConfig = {
   name: 'server',
@@ -48,6 +49,7 @@ const sConfig = {
       'process.env': {
         NODE_ENV: JSON.stringify(ENV),
         SERVER_SIDE: JSON.stringify(true),
+        API_URL: JSON.stringify(`http://localhost:${port}/api`),
       },
     }),
     new webpack.LoaderOptionsPlugin({

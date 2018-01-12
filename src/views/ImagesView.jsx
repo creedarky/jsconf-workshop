@@ -1,3 +1,11 @@
+import React from 'react';
 import ImagesContainer from 'containers/ImagesContainer.jsx';
+import { loadImages } from 'actions/images.js';
 
-export default ImagesContainer;
+const ImagesView = () => (
+  <ImagesContainer />
+);
+
+ImagesView.fetchData = ({ dispatch }) => dispatch(loadImages());
+
+export default ImagesView;
