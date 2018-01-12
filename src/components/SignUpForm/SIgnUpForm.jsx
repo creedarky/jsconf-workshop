@@ -46,27 +46,30 @@ class SignUpForm extends Component {
     return (
       <div className="SignUpForm">
         <input
-          className="SignUpForm__text"
+          className="input"
           name="name"
           onChange={this.onChangeName}
           type="text"
+          placeholder="Name"
           value={name}
         />
         <input
-          className="SignUpForm__text"
+          className="input"
           name="email"
           onChange={this.onChangeEmail}
           type="email"
+          placeholder="Email"
           value={email}
         />
         <input
-          className="SignUpForm__text"
+          className="input"
           name="password"
+          placeholder="Password"
           onChange={this.onChangePassword}
           type="password"
           value={password}
         />
-        <button onClick={this.onSubmit}>Submit</button>
+        <button className="button" onClick={this.onSubmit}>Submit</button>
       </div>
     );
   }

@@ -38,20 +38,20 @@ class SignInForm extends Component {
     return (
       <div className="SignInForm">
         <input
-          className="SignInForm__text"
+          className="input"
           name="email"
           onChange={this.onChangeEmail}
           type="email"
           value={email}
         />
         <input
-          className="SignInForm__text"
+          className="input"
           name="password"
           onChange={this.onChangePassword}
           type="password"
           value={password}
         />
-        <button onClick={this.onSubmit}>Submit</button>
+        <button className="button" onClick={this.onSubmit}>Submit</button>
       </div>
     );
   }
