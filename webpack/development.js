@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const port = process.env.PORT || 3000;
 module.exports = {
   output: {
     filename: '[name].js',
@@ -10,7 +11,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        API_URL: JSON.stringify('http://localhost:3000/api'),
+        API_URL: JSON.stringify(`http://localhost:${port}/api`),
       },
     }),
     new webpack.HotModuleReplacementPlugin(),

@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import reducer from 'reducers/index.js';
 import { routerMiddleware } from 'react-router-redux';
 
-function configureStore(history) {
+function configureStore(history, initialState = {}) {
   const middlewares = [thunk, routerMiddleware(history)];
 
   if (process.env.NODE_ENV !== 'production') {
@@ -21,7 +21,7 @@ function configureStore(history) {
   const enhancer = composeEnhancers(
     applyMiddleware(...middlewares),
   );
-  const store = createStore(reducer, enhancer);
+  const store = createStore(reducer, initialState, enhancer);
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('reducers/index.js', () => {

@@ -11,7 +11,10 @@ import 'styles.scss';
 
 const history = createHistory();
 
-const store = configureStore(history);
+// eslint-disable-next-line no-underscore-dangle
+const initialState = window.__INITIAL_STATE__;
+
+const store = configureStore(history, initialState);
 const rootElement = document.getElementById('app');
 
 

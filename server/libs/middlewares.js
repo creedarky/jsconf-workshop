@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 module.exports = (app) => {
-  app.set('port', 3000);
+  app.set('port', process.env.PORT || 3000);
   app.set('json spaces', 2);
   app.use(helmet());
   app.use(cors({
@@ -14,7 +14,7 @@ module.exports = (app) => {
     allowedHeaders: ['Content-Type', 'Authorization'],
   }));
   app.use(bodyParser.json());
-  app.use(cookieParser())
+  app.use(cookieParser());
   app.use(app.auth.initialize());
   app.use(express.static('public'));
 };

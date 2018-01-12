@@ -6,7 +6,7 @@ module.exports = {
     dialect: 'sqlite',
     storage: 'jsconf.sqlite',
     logging: (sql) => {
-      console.log(`[${new Date()}] ${sql}`);
+      // console.log(`[${new Date()}] ${sql}`);
     },
     define: {
       underscored: true,
