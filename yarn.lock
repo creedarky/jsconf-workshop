@@ -5982,7 +5982,7 @@ querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
 
-querystring@0.2.0:
+querystring@0.2.0, querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
@@ -6453,7 +6453,7 @@ require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
 
-require-from-string@^1.1.0:
+require-from-string@^1.1.0, require-from-string@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-1.2.1.tgz#529c9ccef27380adfec9a2f965b649bbee636418"
 
@@ -6799,7 +6799,7 @@ source-list-map@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.0.tgz#aaa47403f7b245a92fbc97ea08f250d6087ed085"
 
-source-map-support@^0.4.15:
+source-map-support@^0.4.15, source-map-support@^0.4.2:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
   dependencies:
@@ -6934,6 +6934,12 @@ stackframe@^1.0.3:
 stat-mode@^0.2.0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/stat-mode/-/stat-mode-0.2.2.tgz#e6c80b623123d7d80cf132ce538f346289072502"
+
+stats-webpack-plugin@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/stats-webpack-plugin/-/stats-webpack-plugin-0.6.1.tgz#5db260514387bc3d4ba6fb85fc4990bd4a71c415"
+  dependencies:
+    lodash "^4.17.4"
 
 "statuses@>= 1.3.1 < 2", statuses@~1.3.1:
   version "1.3.1"
@@ -7774,7 +7780,7 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webpack-dev-middleware@^1.11.0:
+webpack-dev-middleware@^1.11.0, webpack-dev-middleware@^1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-1.12.0.tgz#d34efefb2edda7e1d3b5dbe07289513219651709"
   dependencies:
@@ -7814,6 +7820,23 @@ webpack-dev-server@^2.9.3:
     supports-color "^4.2.1"
     webpack-dev-middleware "^1.11.0"
     yargs "^6.6.0"
+
+webpack-hot-middleware@^2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.20.0.tgz#cb896d837758b6408fe0afeeafdc0e5316b15319"
+  dependencies:
+    ansi-html "0.0.7"
+    html-entities "^1.2.0"
+    querystring "^0.2.0"
+    strip-ansi "^3.0.0"
+
+webpack-hot-server-middleware@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/webpack-hot-server-middleware/-/webpack-hot-server-middleware-0.2.0.tgz#898f2ac7edf9d9a4ac5162b89698948bc9bb8ee6"
+  dependencies:
+    debug "^2.2.0"
+    require-from-string "^1.2.1"
+    source-map-support "^0.4.2"
 
 webpack-merge@^4.1.0:
   version "4.1.0"

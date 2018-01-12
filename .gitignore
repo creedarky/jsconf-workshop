@@ -61,7 +61,6 @@ typings/
 build
 dist
 
-
 # sqlite
 *.sqlite
 

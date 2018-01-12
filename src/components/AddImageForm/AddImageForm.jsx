@@ -38,14 +38,15 @@ class AddImageForm extends Component {
     return (
       <div className="AddImageForm">
         <input
-          className="AddImageForm__text"
+          className="input"
           name="url"
           onChange={this.onChange}
           type="text"
           required
+          placeholder="Image URL"
           value={url}
         />
-        <button onClick={this.onSubmit}>Submit</button>
+        <button className="button" onClick={this.onSubmit}>Submit</button>
       </div>
     );
   }
